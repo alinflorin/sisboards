@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <button (click)="sidenav?.toggle()" color="accent" mat-icon-button>
+    <mat-icon>{{sidenav?.opened ? 'chevron_left' : 'menu'}}</mat-icon>
+  </button>
+  <span>Sisboards</span>
+  <span fxFlex="1 1 auto"></span>
+  <button mat-icon-button color="accent">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>

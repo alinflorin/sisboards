@@ -99,7 +99,9 @@
               "browserTarget": "sisboards:build:production"
             },
             "development": {
-              "browserTarget": "sisboards:build:development"
+              "browserTarget": "sisboards:build:development",
+              "hmr": true,
+              "verbose": false
             }
           },
           "defaultConfiguration": "development"

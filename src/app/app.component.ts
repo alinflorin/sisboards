@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -8,13 +9,18 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _subs: Subscription[] = [];
+  isMobile = false;
   
-  constructor() {
+  constructor(private mediaObserver: MediaObserver) {
 
   }
 
   ngOnInit(): void {
-      
+    this._subs.push(
+      this.mediaObserver.asObservable().subscribe(() => {
+        this.isMobile = this.mediaObserver.isActive('xs');
+      })
+    );
   }
 
   ngOnDestroy(): void {
