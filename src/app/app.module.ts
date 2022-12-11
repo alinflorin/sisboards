@@ -31,6 +31,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
+import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MatButtonModule } from "@angular/material/button";
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
+    ConfirmationModule
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
