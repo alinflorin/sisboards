@@ -1,31 +1,42 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { providePerformance,getPerformance } from '@angular/fire/performance';
-import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
+import {
+  provideAnalytics,
+  getAnalytics,
+  ScreenTrackingService,
+  UserTrackingService,
+} from "@angular/fire/analytics";
+import { provideAuth, getAuth } from "@angular/fire/auth";
+import { provideFirestore, getFirestore } from "@angular/fire/firestore";
+import { providePerformance, getPerformance } from "@angular/fire/performance";
+import {
+  provideRemoteConfig,
+  getRemoteConfig,
+} from "@angular/fire/remote-config";
+import { provideStorage, getStorage } from "@angular/fire/storage";
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
+    ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: "registerWhenStable:30000",
     }),
     BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -34,11 +45,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideFirestore(() => getFirestore()),
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
-  providers: [
-    ScreenTrackingService,UserTrackingService
-  ],
-  bootstrap: [AppComponent]
+  providers: [ScreenTrackingService, UserTrackingService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

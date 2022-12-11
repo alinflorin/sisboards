@@ -13,7 +13,12 @@ export const environment = {
     messagingSenderId: '776154221258',
     measurementId: 'G-B7YK7SHNMM',
   },
-  production: false
+  production: false,
+  ui: {
+    toast: {
+      duration: 5000
+    }
+  }
 };
 
 /*
