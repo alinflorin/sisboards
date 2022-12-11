@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "sisoundboards": {
+      "hosting": {
+        "sisboards": [
+          "sisoundboards"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "sisoundboards"
+  }
+}
