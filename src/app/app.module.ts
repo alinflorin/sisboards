@@ -42,6 +42,8 @@ import { ToastModule } from './shared/toast/toast.module';
 import { MyBoardsComponent } from './my-boards/my-boards.component';
 import { AuthGuardModule } from "@angular/fire/auth-guard";
 import { MatCardModule } from "@angular/material/card";
+import { AddEditBoardComponent } from './add-edit-board/add-edit-board.component';
+import { ViewBoardComponent } from './view-board/view-board.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { MatCardModule } from "@angular/material/card";
     SignupComponent,
     ForgotPasswordComponent,
     MyBoardsComponent,
+    AddEditBoardComponent,
+    ViewBoardComponent,
   ],
   imports: [
     BrowserModule,

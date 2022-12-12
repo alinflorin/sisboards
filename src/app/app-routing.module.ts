@@ -7,6 +7,8 @@ import { MyBoardsComponent } from './my-boards/my-boards.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignupComponent } from './signup/signup.component';
 import { redirectUnauthorizedTo, AuthGuard} from '@angular/fire/auth-guard';
+import { AddEditBoardComponent } from './add-edit-board/add-edit-board.component';
+import { ViewBoardComponent } from './view-board/view-board.component';
 
 const redirectUnauthorizedToLogin = (next: any) => redirectUnauthorizedTo("login?returnUrl=%2F" + encodeURIComponent(next.url));
 
@@ -32,6 +34,22 @@ const routes: Routes = [
     component: MyBoardsComponent,
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: "add",
+    component: AddEditBoardComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: "edit/:id",
+    component: AddEditBoardComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: "view/:id",
+    component: ViewBoardComponent
   },
   {
     path: "**",
