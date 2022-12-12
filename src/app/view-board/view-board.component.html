@@ -20,13 +20,12 @@
         (click)="play(audio)"
         *ngFor="let s of board.sounds; let i = index"
         class="cp"
-        fxFlex="1 1 calc(33% - 1rem)"
-        fxFlex.xs="0"
+        fxFlex.gt-xs="1 1 calc(33% - 1rem)"
       >
         <mat-card-header>
           <mat-card-title>{{ s.name }}</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content fxHide>
             <audio #audio [src]="s.url"></audio>
         </mat-card-content>
       </mat-card>

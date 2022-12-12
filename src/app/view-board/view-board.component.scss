@@ -1,6 +1,8 @@
 :host {
   height: 100%;
   #board {
+    overflow: auto;
+    min-height: 0;
     background-size: cover;
     color: white;
 
