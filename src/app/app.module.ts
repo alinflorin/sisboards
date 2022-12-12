@@ -39,6 +39,8 @@ import { MatInputModule } from "@angular/material/input";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 import { ToastModule } from './shared/toast/toast.module';
+import { MyBoardsComponent } from './my-boards/my-boards.component';
+import { AuthGuardModule } from "@angular/fire/auth-guard";
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ToastModule } from './shared/toast/toast.module';
     LoginComponent,
     SignupComponent,
     ForgotPasswordComponent,
+    MyBoardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { ToastModule } from './shared/toast/toast.module';
     MatFormFieldModule,
     FlexLayoutModule,
     ConfirmationModule,
-    ToastModule
+    ToastModule,
+    AuthGuardModule,
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
