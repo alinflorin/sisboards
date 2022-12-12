@@ -1,0 +1,21 @@
+:host {
+  height: 100%;
+  #board {
+    background-size: cover;
+    color: white;
+
+    #boardcontent {
+      backdrop-filter: blur(3px);
+
+      h2 {
+        background: rgba(98, 153, 185, 0.31);
+      }
+
+      ::ng-deep mat-card {
+        color: white !important;
+        background: rgba(98, 153, 185, 0.31);
+        max-height: 100px;
+      }
+    }
+  }
+}

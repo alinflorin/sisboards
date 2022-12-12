@@ -1,1 +1,35 @@
-<p>view-board works!</p>
+<div
+  id="board"
+  fxFlex="1 1 auto"
+  [style.background-image]="'url(\'' + board.backgroundUrl + '\')'"
+  *ngIf="board"
+  fxFlex="1 1 100%"
+  fxLayout="column"
+>
+  <div fxFlex="1 1 100%" fxLayout="column" id="boardcontent">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <h2>{{ board.name }}</h2>
+    </div>
+    <div
+      fxFlex="1 1 auto"
+      fxLayout="row wrap"
+      fxLayout.xs="column"
+      fxLayoutGap="0.5rem"
+    >
+      <mat-card
+        (click)="play(audio)"
+        *ngFor="let s of board.sounds; let i = index"
+        class="cp"
+        fxFlex="1 1 calc(33% - 1rem)"
+        fxFlex.xs="0"
+      >
+        <mat-card-header>
+          <mat-card-title>{{ s.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <audio #audio [src]="s.url"></audio>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

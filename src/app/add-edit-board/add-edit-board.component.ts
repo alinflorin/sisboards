@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ToastService } from "../shared/toast/services/toast.service";
 import { Board } from "../models/board";
+import { Storage, getDownloadURL, uploadBytes, ref } from '@angular/fire/storage';
 
 @Component({
   selector: "app-add-edit-board",
@@ -29,6 +30,7 @@ export class AddEditBoardComponent implements OnInit, OnDestroy {
     private firestore: Firestore,
     private toast: ToastService,
     private auth: Auth,
+    private storage: Storage,
     private actRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -56,7 +58,13 @@ export class AddEditBoardComponent implements OnInit, OnDestroy {
   private loadBoardForEdit() {
     getDoc(doc(this.firestore, "boards/" + this.id))
       .then((d) => {
-        this.form.patchValue(d.data() as Board);
+        const board = d.data() as Board;
+        if (board.sounds && board.sounds.length > 0) {
+          for (let i = 0; i < board.sounds.length; i++) {
+            this.addSound();
+          }
+        }
+        this.form.patchValue(board);
       })
       .catch((e) => {
         this.toast.showError("Error: " + e.message);
@@ -91,5 +99,41 @@ export class AddEditBoardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subs.forEach((s) => s.unsubscribe());
+  }
+
+  async onBackgroundImageChange(event: Event) {
+    const file = (event.target as HTMLInputElement).files!.item(0);
+    const data = await file!.arrayBuffer();
+    const reference = ref(
+      this.storage,
+      this.auth.currentUser!.email + "/" + file!.name
+    );
+    const uploadResult = await uploadBytes(reference, data);
+    const downloadUrl = await getDownloadURL(uploadResult.ref);
+    this.form.get("backgroundUrl")!.setValue(downloadUrl);
+  }
+
+  async onAudioUpload(event: Event, control: FormGroup) {
+    const file = (event.target as HTMLInputElement).files!.item(0);
+    const data = await file!.arrayBuffer();
+    const reference = ref(
+      this.storage,
+      this.auth.currentUser!.email + "/" + file!.name
+    );
+    const uploadResult = await uploadBytes(reference, data);
+    const downloadUrl = await getDownloadURL(uploadResult.ref);
+    control.get("url")!.setValue(downloadUrl);
+  }
+
+  deleteSound(i: number) {
+    this.soundsFormArray.removeAt(i);
+  }
+
+  addSound() {
+    const fg = new FormGroup({
+      name: new FormControl(undefined, [Validators.required]),
+      url: new FormControl(undefined, [Validators.required])
+    });
+    this.soundsFormArray.push(fg);
   }
 }
