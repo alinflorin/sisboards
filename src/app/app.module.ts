@@ -24,14 +24,21 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
+import { MatMenuModule } from "@angular/material/menu";
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { ConfirmationModule } from './shared/confirmation/confirmation.module';
+import { ToastModule } from './shared/toast/toast.module';
 
 @NgModule({
   declarations: [
@@ -40,13 +47,15 @@ import { ConfirmationModule } from './shared/confirmation/confirmation.module';
     HomeComponent,
     HeaderComponent,
     SidebarComponent,
+    LoginComponent,
+    SignupComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
       registrationStrategy: "registerWhenStable:30000",
@@ -64,7 +73,12 @@ import { ConfirmationModule } from './shared/confirmation/confirmation.module';
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
-    ConfirmationModule
+    MatMenuModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FlexLayoutModule,
+    ConfirmationModule,
+    ToastModule
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],

@@ -4,7 +4,21 @@
   </button>
   <span>SIS</span>
   <span fxFlex="1 1 auto"></span>
-  <button mat-icon-button color="accent">
+  <button [matMenuTriggerFor]="menu" mat-icon-button color="accent">
     <mat-icon>person</mat-icon>
   </button>
 </mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button routerLink="login" *ngIf="!auth.currentUser" mat-menu-item>
+    <mat-icon>login</mat-icon>
+    <span>Login</span>
+  </button>
+  <button routerLink="signup" *ngIf="!auth.currentUser" mat-menu-item>
+    <mat-icon>person_add</mat-icon>
+    <span>Sign Up</span>
+  </button>
+  <button (click)="logout()" *ngIf="auth.currentUser" mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

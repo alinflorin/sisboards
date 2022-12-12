@@ -1,0 +1,32 @@
+<div fxLayout="column" class="h-100 w-100" fxLayoutAlign="center center" fxLayoutGap="1rem">
+    <h2>Sign Up</h2>
+    <form (submit)="signup()" [formGroup]="form" fxLayout="column" fxLayoutGap="0.5rem">
+        <mat-form-field>
+            <mat-label>E-Mail</mat-label>
+            <input color="accent" type="email" required matInput formControlName="email" />
+            <mat-error *ngIf="form.touched && form.get('email')?.hasError('required')">
+                E-Mail is required
+            </mat-error>
+            <mat-error *ngIf="form.touched && form.get('email')?.hasError('email')">
+                E-Mail is not valid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input color="accent" type="password" required matInput formControlName="password" />
+            <mat-error *ngIf="form.touched && form.get('password')?.hasError('required')">
+                Password is required
+            </mat-error>
+            <mat-error *ngIf="form.touched && form.get('password')?.hasError('minLength')">
+                Password is too short
+            </mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <button color="accent" type="submit" mat-raised-button>
+                Sign Up
+            </button>
+        </div>
+    </form>
+</div>
