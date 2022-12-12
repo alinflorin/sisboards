@@ -32,4 +32,11 @@
             <a routerLink="/forgot-password">Forgot password?</a>
         </div>
     </form>
+
+    <div>OR</div>
+
+    <div fxLayout="column" fxLayoutGap="0.5rem">
+        <button (click)="loginWithSocial('google')" mat-raised-button color="accent">Login with Google</button>
+        <button (click)="loginWithSocial('facebook')" mat-raised-button color="accent">Login with Facebook</button>
+    </div>
 </div>

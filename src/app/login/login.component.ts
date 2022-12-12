@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, AuthProvider, signInWithPopup } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -42,6 +42,24 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl(this.returnUrl);
     }).catch(e => {
       this.toast.showError('Login failed: ' + e.message);
+    });
+  }
+
+  loginWithSocial(p: string): void {
+    let provider: AuthProvider | undefined;
+    switch (p) {
+      default:
+      case 'google':
+        provider = new GoogleAuthProvider();
+        break;
+      case 'facebook':
+        provider = new FacebookAuthProvider();
+        break;
+    }
+    signInWithPopup(this.auth, provider).then(() => {
+      this.router.navigateByUrl(this.returnUrl);
+    }).catch(e => {
+      this.toast.showError("Login failed: " + e.message);
     });
   }
 }

@@ -5,13 +5,17 @@
   <span>SIS</span>
   <span fxFlex="1 1 auto"></span>
   <button [matMenuTriggerFor]="menu" mat-icon-button color="accent">
-    <mat-icon>person</mat-icon>
+    <mat-icon>{{auth.currentUser ? 'account_circle' : 'person'}}</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
   <button routerLink="login" *ngIf="!auth.currentUser" mat-menu-item>
     <mat-icon>login</mat-icon>
     <span>Login</span>
+  </button>
+  <button *ngIf="auth.currentUser" mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span>{{ auth.currentUser.displayName || auth.currentUser.email }}</span>
   </button>
   <button routerLink="signup" *ngIf="!auth.currentUser" mat-menu-item>
     <mat-icon>person_add</mat-icon>
