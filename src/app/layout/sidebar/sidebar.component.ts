@@ -20,6 +20,8 @@ export class SidebarComponent implements OnInit {
     e.preventDefault();
     e.stopImmediatePropagation();
     this.router.navigateByUrl(url);
-    this.sidenav?.close();
+    if (this.sidenav?.mode === 'over') {
+      this.sidenav?.close();
+    }
   }
 }
