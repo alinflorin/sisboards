@@ -1,1 +1,32 @@
-<p>add-edit-board works!</p>
+<h2>{{ id ? 'Edit Board' : 'Add Board'}}</h2>
+<form
+  (submit)="save()"
+  [formGroup]="form"
+  fxLayout="column"
+  fxLayoutGap="0.5rem"
+>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input
+      color="accent"
+      type="text"
+      required
+      matInput
+      formControlName="name"
+    />
+    <mat-error *ngIf="form.touched && form.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button
+      [disabled]="form.invalid"
+      color="accent"
+      type="submit"
+      mat-raised-button
+    >
+      Save
+    </button>
+  </div>
+</form>

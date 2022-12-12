@@ -24,7 +24,7 @@
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="center center">
-            <button color="accent" type="submit" mat-raised-button>
+            <button [disabled]="form.invalid" color="accent" type="submit" mat-raised-button>
                 Login
             </button>
         </div>
