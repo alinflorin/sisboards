@@ -3,6 +3,7 @@
     routerLink="/"
     routerLinkActive="mat-accent"
     mat-raised-button
+    (click)="navigate('/', $event)"
     [routerLinkActiveOptions]="{exact: true}"
     color="primary"
   >
@@ -11,6 +12,7 @@
   <button
     routerLink="/my-boards"
     routerLinkActive="mat-accent"
+    (click)="navigate('/my-boards', $event)"
     mat-raised-button
     color="primary"
   >
@@ -19,6 +21,7 @@
   <button
     routerLink="/add"
     routerLinkActive="mat-accent"
+    (click)="navigate('/add', $event)"
     mat-raised-button
     color="primary"
   >

@@ -1,6 +1,6 @@
 <mat-sidenav-container fxLayout="row" fxFlexFill>
   <mat-sidenav [mode]="isMobile ? 'over' : 'side'" #sidenav class="p-1">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [sidenav]="sidenav"></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content fxFlex="1 1 auto" fxLayout="column">
     <app-header [sidenav]="sidenav"></app-header>
