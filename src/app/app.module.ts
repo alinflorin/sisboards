@@ -41,6 +41,7 @@ import { ConfirmationModule } from './shared/confirmation/confirmation.module';
 import { ToastModule } from './shared/toast/toast.module';
 import { MyBoardsComponent } from './my-boards/my-boards.component';
 import { AuthGuardModule } from "@angular/fire/auth-guard";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AuthGuardModule } from "@angular/fire/auth-guard";
     ConfirmationModule,
     ToastModule,
     AuthGuardModule,
+    MatCardModule,
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],

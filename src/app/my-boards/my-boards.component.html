@@ -1,1 +1,42 @@
-<p>my-boards works!</p>
+<h2>My Boards</h2>
+<div fxLayout="row wrap" fxLayoutGap="0.5rem">
+  <mat-card
+    *ngFor="let b of boards; let i = index"
+    class="cp"
+    fxFlex="1 1 33%"
+    fxFlex.xs="1 1 100%"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ b.name }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="b.backgroundUrl" />
+
+    <mat-card-actions>
+      <button [routerLink]="'/edit/' + b.id" mat-button color="accent">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button (click)="deleteBoard(b.id!, i)" mat-button color="warn">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card routerLink="/add" class="cp" fxFlex="1 1 33%" fxFlex.xs="1 1 100%">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <img mat-card-image style="object-fit: contain" src="/assets/images/add.png" />
+
+    <mat-card-actions>
+      <button fxHide [disabled]="true" mat-button color="accent">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button fxHide [disabled]="true" mat-button color="warn">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

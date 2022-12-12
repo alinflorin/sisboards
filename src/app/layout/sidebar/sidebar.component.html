@@ -1,3 +1,19 @@
-<button routerLink="/my-boards" routerLinkActive="mat-accent" mat-raised-button color="primary">
+<div fxLayout="column" fxLayoutGap="0.5rem">
+  <button
+    routerLink="/"
+    routerLinkActive="mat-accent"
+    mat-raised-button
+    [routerLinkActiveOptions]="{exact: true}"
+    color="primary"
+  >
+    Home
+  </button>
+  <button
+    routerLink="/my-boards"
+    routerLinkActive="mat-accent"
+    mat-raised-button
+    color="primary"
+  >
     My Boards
-</button>
+  </button>
+</div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, query, where, deleteDoc, doc } from '@angular/fire/firestore';
 import { Board } from '../models/board';
+import { ConfirmationService } from '../shared/confirmation/services/confirmation.service';
 import { ToastService } from '../shared/toast/services/toast.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ToastService } from '../shared/toast/services/toast.service';
 })
 export class MyBoardsComponent implements OnInit {
   boards: Board[] = [];
-  constructor(private firestore: Firestore, private auth: Auth, private toast: ToastService) { }
+  constructor(private firestore: Firestore, private auth: Auth, private toast: ToastService, private confirm: ConfirmationService) { }
 
   ngOnInit(): void {
     const col = collection(this.firestore, 'boards');
@@ -20,6 +21,21 @@ export class MyBoardsComponent implements OnInit {
       this.boards = rez.docs.map(x => ({...(x.data()), id: x.id} as Board));
     }).catch(e => {
       this.toast.showError('Error: ' + e.message);
+    });
+  }
+
+  deleteBoard(id: string, i: number) {
+    this.confirm.confirm().subscribe(x => {
+      if (!x) {
+        return;
+      }
+      deleteDoc(doc(this.firestore, 'boards', id)).then(() => {
+        this.boards.splice(i, 1);
+        this.boards = [...this.boards];
+        this.toast.showSuccess('Board deleted');
+      }).catch(e => { 
+        this.toast.showError('Error: ' + e.message);
+      });
     });
   }
 
