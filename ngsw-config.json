@@ -22,6 +22,7 @@
       "resources": {
         "files": [
           "/assets/**",
+          "https://firebasestorage.googleapis.com/v0/b/sisoundboards.appspot.com/o/*",
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ]
       }
